@@ -62,7 +62,7 @@ while (true) {
   let operation = readline.question();
 
   while (!['1','2','3','4'].includes(operation)) {
-    prompt('enterOperation');
+    prompt('validOperation');
     operation = readline.question();
   }
 
