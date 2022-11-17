@@ -1,5 +1,6 @@
 const readline = require('readline-sync');
 const MESSAGES = require('./calculator_messages.json');
+let previousAnswer = [];
 
 //user selects language for entire program
 let lang = readline.question("(1) English\n(2) Español\n(3) 中文\n(4) हिन्दी\n");
@@ -23,9 +24,13 @@ switch (lang) {
     break;
 }
 
-function prompt(msg) {
+function prompt(msg, notLangSpecificMsg) {
   let message = MESSAGES[lang][msg];
-  console.log(`=> ${message}`);
+  if (notLangSpecificMsg === undefined) {
+    console.log(`=> ${message}`);
+  } else {
+    console.log(`=> ${message + notLangSpecificMsg}`);
+  }
 }
 
 function invalidNumber(num) {
@@ -83,4 +88,10 @@ while (true) {
   let repeat = readline.question();
 
   if (repeat.trim() !== '1' && repeat.trim() !== '(1)') break;
+
+  console.clear();
+
+  //displays answer history
+  previousAnswer.unshift(result);
+  prompt('previousResult',previousAnswer);
 }
