@@ -1,0 +1,38 @@
+{
+  "en": {
+    "welcome": "Welcome to the calculator!",
+    "firstNum": "Enter the first number",
+    "secondNum": "Enter the second number",
+    "validNumber": "Hmm... please try again with a valid number",
+    "validOperation": "Please enter: 1, 2, 3, or 4.",
+    "enterOperation": "Enter the number next to the type of operation\n(1) Add  (2) Subtract  (3) Multiply  (4) Divide",
+    "tryAgain": "Enter (1) to calculate another"
+  },
+  "es": {
+    "welcome": "¡Bienvenido a la calculadora!",
+    "firstNum": "Ingresar el primer número",
+    "secondNum": "Ingresar el segundo número",
+    "validNumber": "Hmm... inténtalo de nuevo con un número válido",
+    "validOperation": "Ingrese: 1, 2, 3 o 4.",
+    "enterOperation": "Ingrese el número junto al tipo de operación\n(1) Sumar (2) Restar (3) Multiplicar (4) Dividir",
+    "tryAgain": "Introduzca (1) para calcular otro"
+  },
+  "zh": {
+    "welcome": "欢迎使用计算器！",
+    "firstNum": "请输入第一个数字",
+    "secondNum": "请输入第二个数字",
+    "validNumber": "嗯...请输入有效号码再试一次",
+    "validOperation": "请输入：1、2、3 或 4。",
+    "enterOperation": "在运算类型旁边输入数字\n1() 加 (2) 减 (3) 乘 (4) 除",
+    "tryAgain": "输入 (1) 计算另一个"
+  },
+  "hi": {
+    "welcome": "कैलकुलेटर में आपका स्वागत है!",
+    "firstNum": "पहला नंबर डालें",
+    "secondNum": "दूसरा नंबर डालें",
+    "validNumber": "हम्म... कृपया वैध संख्या के साथ फिर से प्रयास करें",
+    "validOperation": "कृपया दर्ज करें: 1, 2, 3, या 4।",
+    "enterOperation": "कार्रवाई के प्रकार के आगे की संख्या दर्ज करें\n(1) जोड़ें (2) घटाएँ (3) गुणा करें (4) विभाजित करें",
+    "tryAgain": "दूसरे की गणना करने के लिए (1) दर्ज करें"
+  }
+}
