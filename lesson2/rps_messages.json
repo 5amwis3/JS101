@@ -1,0 +1,15 @@
+{
+  "header": "  rock paper scissors Spock lizard\n=>_____________________________________",
+  "youWin": "             ^\n=>              You win!\n",
+  "computerWins": "                            ^\n=>          The Computer wins\n",
+  "aTie": "\n=>            It's a tie!\n",
+  "chooseAttack": "\n=>         Choose Your Attack!\n=> ",
+  "caseSensative": "(first (L)etter is case sensative!)",
+  "badInput": "You are welcome to just enter the first letter.",
+  "youChose": "You chose: ",
+  "computerChose": "The Computer chose: ",
+  "continue": "press 'ENTER' to Continue best of 5!\n=> press 'q' to quit",
+  "playAgainHelp": "press ENTER key to play BEST OF FIVE!\n=> press 'q' to quit",
+  "finalScore": "************FINAL SCORE*************\n",
+  "finalScoreEND": "************************************\n"
+}
