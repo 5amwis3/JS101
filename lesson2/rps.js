@@ -120,5 +120,11 @@ while (bestOfFive < 5) {
 //display final results
 prompt('finalScore');
 header();
-displayWinner(winner);
+if (scoreKeeper[0][1] > scoreKeeper[1][1]) {
+  displayWinner('user');
+} else if (scoreKeeper[0][1] < scoreKeeper[1][1]) {
+  displayWinner('computer');
+} else {
+  displayWinner('tie');
+}
 prompt('finalScoreEND');
