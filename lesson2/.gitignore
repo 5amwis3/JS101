@@ -1,4 +1,0 @@
-#ignore the following
-.eslintrc.yml
-package-lock.json
-package.json
