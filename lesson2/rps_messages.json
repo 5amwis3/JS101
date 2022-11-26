@@ -8,8 +8,9 @@
   "badInput": "You are welcome to just enter the first letter.",
   "youChose": "You chose: ",
   "computerChose": "The Computer chose: ",
-  "continue": "press 'ENTER' to Continue best of 5!\n=> press 'q' to quit",
-  "playAgainHelp": "press ENTER key to play BEST OF FIVE!\n=> press 'q' to quit",
-  "finalScore": "************FINAL SCORE*************\n",
+  "continueBestOf5": "press 'ENTER' to Continue best of 5!\n=> press 'q' to quit",
+  "continue": "press 'ENTER' to Continue!",
+  "playAgainHelp": "press ENTER key to Continue\n=> press 'q' to quit",
+  "finalScore": "************FINAL SCORE*************\n\n=>  rock paper scissors Spock lizard\n=>_____________________________________",
   "finalScoreEND": "************************************\n"
 }
