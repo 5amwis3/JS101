@@ -12,6 +12,7 @@ function isAnIpNumber(str) {
 function isDotSeparatedIpAddress(inputString) {
   let dotSeparatedWords = inputString.split(".");
   if (dotSeparatedWords.length !== 4) return false;
+  
   while (dotSeparatedWords.length > 0) {
     let word = dotSeparatedWords.pop();
     if (!isAnIpNumber(word)) { //determines if between 0 and 255
