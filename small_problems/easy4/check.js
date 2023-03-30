@@ -4,9 +4,8 @@ function validatePIN (pin) {
 
   if (onlyNums) {
     return pin.length === 4 || pin.length === 6;
-  } else {
-    return false;
   }
+    return false;
 }
 
 console.log(validatePIN("1"));
