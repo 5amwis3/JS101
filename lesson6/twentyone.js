@@ -63,7 +63,7 @@ function showPlayerHand(playerHand, playerName, playerTotal) {
   console.log(`${'='.repeat(31)}\n${playerTotal}\n`);
 }
 
-function showAllHands(playerHand, dealerHand, playerName, playerTotal, dealerTotal) {
+function showAll(playerHand, dealerHand, playerName, playerTotal, dealerTotal) {
   prompt("Dealer");
   let cardBottom = 0;
   let bottomIndent = 0;
@@ -194,7 +194,7 @@ while (true) {
     bestOfFiveDealer += 1;
   } else {
     header();
-    showAllHands(playerHand, dealerHand, playerName, playerTotal, dealerTotal);
+    showAll(playerHand, dealerHand, playerName, playerTotal, dealerTotal);
 
     if (dealerTotal > WINNING_NUMBER) {
       prompt("The Dealer Busted!");
