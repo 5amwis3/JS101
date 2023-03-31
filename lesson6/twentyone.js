@@ -4,11 +4,6 @@ const CARD_SUITS = ["Clubs", "Spades", "Hearts", "Diamonds"];
 let WINNING_NUMBER = 21;
 let readline = require('readline-sync');
 
-
-function prompt(msg) {
-  console.log(`=> ${msg}`);
-}
-
 function initializeDeck(deck) {
   for (let suitIdx = 0; suitIdx < CARD_SUITS.length; suitIdx++) {
     for (let cardIdx = 0; cardIdx < CARD_TYPES.length; cardIdx++) {
@@ -28,62 +23,6 @@ function dealRandomCard(cards, whom, deck, playerHand, dealerHand) {
     if (whom !== 'player') dealerHand.push(...deck.splice(shuffle, 1));
   }
 }
-
-//display-------
-function header() {
-  console.clear();
-  console.log(`\n=============| ${WINNING_NUMBER} |============\n_______________________________\n\n`);
-}
-
-function showCardsForPlayer(playerHand, dealerHand, playerName, playerTotal) {
-  prompt("Dealer");
-  console.log(` ,-------------\n | ${dealerHand[0][0]}`.padEnd(22, ' ') +
-  `${dealerHand[0][1]}`.padEnd(9, ' ') + '|\n |,-------------\n || **  ******* |\n ||             |');
-  console.log(`${'='.repeat(31)}\n`);
-
-  showPlayerHand(playerHand, playerName, playerTotal);
-}
-
-function showPlayerHand(playerHand, playerName, playerTotal) {
-  prompt(playerName);
-  let cardBottom = 0;
-  let bottomIndent = 0;
-
-  playerHand.forEach((card, num) => {
-    if (num > 4) cardBottom += 1;
-    if (num > 3) bottomIndent = 1;
-    console.log(String(`${''.padEnd(num - cardBottom, '|')},`.padEnd(14 + num - cardBottom, '-'))
-      .padStart(num + 14 + 1, ' '));
-    console.log(String(`|`.repeat(num + 1 - cardBottom) + ` ${card[0]}`.padEnd(4, ' ') +
-    `${card[1]}`.padEnd(9, ' ') + '|').padStart(num + 15 + 1, ' '));
-  });
-
-  console.log(String(`${'|'.repeat(playerHand.length - cardBottom - bottomIndent)}             |`)
-    .padStart(playerHand.length + 14 + 1, ' '));
-  console.log(`${'='.repeat(31)}\n${playerTotal}\n`);
-}
-
-function showAll(playerHand, dealerHand, playerName, playerTotal, dealerTotal) {
-  prompt("Dealer");
-  let cardBottom = 0;
-  let bottomIndent = 0;
-
-  dealerHand.forEach((card, num) => {
-    if (num > 4) cardBottom += 1;
-    if (num > 3) bottomIndent = 1;
-    console.log(String(`${''.padEnd(num - cardBottom, '|')},`.padEnd(14 + num - cardBottom, '-'))
-      .padStart(num + 14 + 1, ' '));
-    console.log(String(`|`.repeat(num + 1 - cardBottom) + ` ${card[0]}`.padEnd(4, ' ') +
-    `${card[1]}`.padEnd(9, ' ') + '|').padStart(num + 15 + 1, ' '));
-  });
-
-  console.log(String(`${'|'.repeat(dealerHand.length - cardBottom - bottomIndent)}             |`)
-    .padStart(dealerHand.length + 14 + 1, ' '));
-  console.log(`${'='.repeat(31)}\n${dealerTotal}\n\n`);
-
-  showPlayerHand(playerHand, playerName, playerTotal);
-}
-//------------
 
 function calculateTotal(hand) {
   let total = 0;
@@ -116,6 +55,7 @@ function dealerAiReturnTotal(deck, dealerHand, playerHand, dealersLimit) {
   return total;
 }
 
+// get user input...  ---------------------------------------
 function getUserName(msg) {
   prompt(msg);
   let playerName = readline.question() || 'Player';
@@ -127,14 +67,13 @@ function getUserName(msg) {
     .slice(0, 24);
 }
 
-function getPlayAgain() {
-  let playAgain;
-  while (true) {
-    prompt("Continue Playing? ('y' or 'n')");
-    playAgain = readline.question().trim().toLowerCase();
-    if (['y', 'n'].includes(playAgain)) break;
-  }
-  return playAgain === 'y';
+function getNumber20to41(msg) {
+  prompt(msg);
+  prompt("Any number from 20 - 41!");
+  let num = parseInt(readline.question(), 10) || 21;
+  if (num < 20) num = 20;
+  if (num > 41) num = 41;
+  return num;
 }
 
 function getHitOrStay() {
@@ -147,16 +86,53 @@ function getHitOrStay() {
   return hitOrStay;
 }
 
-function getNumber20to41(msg) {
-  prompt(msg);
-  prompt("Any number from 20 - 41!");
-  let num = parseInt(readline.question(), 10) || 21;
-  if (num < 20) num = 20;
-  if (num > 41) num = 41;
-  return num;
+function getPlayAgain() {
+  let playAgain;
+  while (true) {
+    prompt("Continue Playing? ('y' or 'n')");
+    playAgain = readline.question().trim().toLowerCase();
+    if (['y', 'n'].includes(playAgain)) break;
+  }
+  return playAgain === 'y';
+}
+//-----------------------------------------------------------
+
+// for display-----------------------------------------------
+function prompt(msg) {
+  console.log(`=> ${msg}`);
 }
 
-//flow
+function header() {
+  console.clear();
+  console.log(`\n=============| ${WINNING_NUMBER} |============\n_______________________________\n\n`);
+}
+
+function showDealerCardForPlayer(dealerHand) {
+  console.log(` ,-------------\n | ${dealerHand[0][0]}`.padEnd(22, ' ') +
+  `${dealerHand[0][1]}`.padEnd(9, ' ') + '|\n |,-------------\n || **  ******* |\n ||             |');
+  console.log(`${'='.repeat(31)}\n`);
+}
+
+function showHand(hand, total) {
+  let cardBottom = 0;
+  let bottomIndent = 0;
+
+  hand.forEach((card, num) => {
+    if (num > 4) cardBottom += 1;
+    if (num > 3) bottomIndent = 1;
+    console.log(String(`${''.padEnd(num - cardBottom, '|')},`.padEnd(14 + num - cardBottom, '-'))
+      .padStart(num + 14 + 1, ' '));
+    console.log(String(`|`.repeat(num + 1 - cardBottom) + ` ${card[0]}`.padEnd(4, ' ') +
+      `${card[1]}`.padEnd(9, ' ') + '|').padStart(num + 15 + 1, ' '));
+  });
+
+  console.log(String(`${'|'.repeat(hand.length - cardBottom - bottomIndent)}             |`)
+    .padStart(hand.length + 14 + 1, ' '));
+  console.log(`${'='.repeat(31)}\n${total}\n`);
+}
+//-----------------------------------------------------------
+
+// game flow  -----------------------------------------------
 header();
 prompt("Welcome to a customizable\n=> game of 21!\n");
 let playerName = getUserName("Enter Your Name: ");
@@ -178,9 +154,13 @@ while (true) {
   dealRandomCard(2, 'both', deck, playerHand, dealerHand);
 
   while (true) {
-    header();
     playerTotal = calculateTotal(playerHand);
-    showCardsForPlayer(playerHand, dealerHand, playerName, playerTotal);
+    header();
+    prompt("Dealer");
+    showDealerCardForPlayer(dealerHand);
+    prompt(playerName);
+    showHand(playerHand,  playerTotal);
+
     if (playerTotal > WINNING_NUMBER) break;
     if (getHitOrStay() === 's') break;
     dealRandomCard(1, 'player', deck, playerHand, dealerHand);
@@ -194,7 +174,10 @@ while (true) {
     bestOfFiveDealer += 1;
   } else {
     header();
-    showAll(playerHand, dealerHand, playerName, playerTotal, dealerTotal);
+    prompt("Dealer");
+    showHand(dealerHand, dealerTotal);
+    prompt(playerName);
+    showHand(playerHand,  playerTotal);
 
     if (dealerTotal > WINNING_NUMBER) {
       prompt("The Dealer Busted!");
