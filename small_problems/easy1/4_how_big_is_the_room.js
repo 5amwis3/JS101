@@ -22,3 +22,5 @@ let areaInM = (length * width).toFixed(2);
 let areaInFt = (areaInM * SQMETERS_TO_SQFEET).toFixed(2);
 
 console.log(`The area of the room is ${areaInM} square meters (${areaInFt} square feet)`);
+
+

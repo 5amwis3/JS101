@@ -1,0 +1,1 @@
+  // if (arr1.length === 0) return false;

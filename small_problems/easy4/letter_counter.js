@@ -16,7 +16,7 @@ function wordSizes(str) {
   
   cleaned(str).split(' ').forEach(word => {
     if (obj[word.length]) {
-      obj[word.length] +=1;
+      obj[word.length] += 1;
     } else {
       obj[word.length] = 1;
     }

@@ -1,13 +1,9 @@
 function swap(str) {
-  let newPhrase = (str.split(' ').map(word => {
-    if (word.length === 1) return word;
-
-    return word[word.length - 1] + word.slice(1,-1) + word[0];
-  }).join(' '));
-
-  console.log((newPhrase));
+  return str.split(' ').map(word => {
+    return word[word.length - 1] + word.slice(1, word.length - 1) + word[0];
+  }).join(' ');
 }
 
-swap('Oh what a wonderful day it is');  // "hO thaw a londerfuw yad ti si"
-swap('Abcde');                          // "ebcdA"
-swap('a');                              // "a"
+console.log(swap('Oh what a wonderful day it is'));  // "hO thaw a londerfuw yad ti si"
+console.log(swap('Abcde'));                          // "ebcdA"
+console.log(swap('a'));                              // "a"

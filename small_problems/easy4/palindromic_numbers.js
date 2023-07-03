@@ -1,9 +1,25 @@
-function isPalindromicNumber(num) {
-  str = String(Number(num));
-  console.log(str === str.split('').reverse().join(''));
+function isPalindromicNumber(number) {
+  return String(number) === String(number).split("").reverse().join("");
 }
 
-isPalindromicNumber(34543);        // true
-isPalindromicNumber(123210);       // false
-isPalindromicNumber(22);           // true
-isPalindromicNumber(5);            // true
+//Further exploration
+
+function isPalindrome(num, length) {
+  num = String(num);
+  console.log(num);
+  if (length !== num.length) {
+    let diff = length - num.length;
+    for (let i = (num.length - 1); i >= diff; i--) {
+      if (num[i] === "0") {
+        num = num.slice(0, i);
+      } else {
+        break;
+      }
+    }
+  }
+  return isPalindromicNumber(num);
+}
+
+console.log(isPalindrome(0026, 4));  // true
+console.log(isPalindrome(00330, 5)); // false
+console.log(isPalindrome(0, 1)); //true

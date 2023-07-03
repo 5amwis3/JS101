@@ -7,14 +7,11 @@
 //join and return comprimised string
 
 function crunch(str) {
-  fibArray = str.split('');
-  fibArray.forEach((letter, idx) => {
-    while (letter === fibArray[idx + 1]) {
-      fibArray.splice(idx, 1);
-      if ()
-    }
-  })
-  return fibArray.join('');
+let finalStr = '';
+for (let idx = 0; idx < str.length; idx++) {
+  if (str[idx] !== str[idx + 1]) finalStr += str[idx];
+}
+console.log(finalStr);
 }
 
 crunch('ddaaiillyy ddoouubbllee');    // "daily double"

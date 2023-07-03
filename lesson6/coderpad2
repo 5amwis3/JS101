@@ -1,0 +1,454 @@
+//1
+// Write a function to find the longest common prefix string amongst an array of strings.
+// If there is no common prefix, return an empty string "".
+
+//input arr of strings
+//ouput 'pref' || ''
+
+/* 
+find longest common prefix
+
+*/
+
+// Note:
+// All given inputs are in lowercase letters a-z.
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+initialize saved = ''
+initialize compareWord
+look at one word
+    if every word in str has the common sub str
+       save substr
+return saved substring
+    */
+
+
+/* function commonPrefix(arr) {
+  let saved = '';
+  let compare = arr[0];
+
+  for (let idx = 1; idx <= compare.length; idx++) {
+    let substr = compare.slice(0, idx);
+
+    if (arr.every(word => {
+      let substr2 = word.slice(0, idx);
+      return substr === substr2;
+    })) saved = substr;
+
+  }
+  return saved;
+}
+
+// Test Cases
+console.log(commonPrefix(["flower", "flow", "flight"]) === "fl"); // true
+console.log(commonPrefix(["dog", "racecar", "car"])  === ""); // true
+console.log(commonPrefix(["interspecies", "interstellar", "interstate"])  === "inters"); // true
+console.log(commonPrefix(["throne", "dungeon"]) === ""); // true
+console.log(commonPrefix(["throne", "throne"]) === "throne"); // true */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 2
+// Given two arrays, return whether the two arrays are opposites of each other.
+// That means both arrays are comprised only from elements a and b and the occurrences
+// of those elements are swapped between the two arrays.
+
+// All tests will include only two different elements per array.
+
+/* 
+ATTEMPT 6
+/* 
+-- Understand the Problem     - ("I am going to start by reading the problem")
+    Input:       2 arrays             - ("Let me start by breaking this down into inputs and outputs")
+    Output:  boolean
+
+    Main Idea: find if arrays have opposite elements
+
+    Rules: 
+    only have 2 elements
+    if element 2 available
+      auto assign false
+    arrays same length
+
+
+-- Structuring the Algorithm  - (“Just thinking at a high level, to solve this problem I would …”)
+    1. Mental Model: (play out examples | multiple ideas | Obj vs Array)
+      * find a and b from array1
+      * loop through indexes of arrays
+      *   compare each element
+      *     if is arr1 is a, and arr2 is not b
+      *       return false
+
+
+      * return true
+
+    2. Pick 1 Algorithm (Lang Agnostic | Specific Bounds): 
+      * finding b
+      *   filter out a
+      *     assign either filteredArr[0] or false, (if filtered array is empty)
+      *     
+
+TEST TEST TEST
+*/
+
+function isAntiArray(arr1, arr2) {
+  if (arr1.length === 0) return false;
+  let a = arr1[0];
+  let b = arr1.filter(element => element !== a)[0] || false;
+
+  for (let idx = 0; idx < arr2.length; idx++) {
+    if (arr1[idx] === a && arr2[idx] !== b) return false;
+    if (arr1[idx] === b && arr2[idx] !== a) return false;
+  }
+
+  return true;
+}
+
+console.log(isAntiArray(["1", "0", "0", "1"], ["0", "1", "1", "0"])); // true
+console.log(isAntiArray(["apples", "bananas", "bananas"], ["bananas", "apples", "apples"])); // true 
+console.log(isAntiArray([3.14, true, 3.14], [3.14, false, 3.14])); // false
+console.log(isAntiArray([3.14, true, 3.14], [true, "3.14", true])); // false
+console.log(isAntiArray([], [])); // false
+console.log(isAntiArray([3.14], [3.14])); // false
+console.log(isAntiArray([3.14], [false])); // true
+console.log(isAntiArray([3.14, false, 3.14], [false, 3.14, true])); // false
+console.log(isAntiArray([3.14, true], [3.14])); // false 
+
+
+
+
+
+
+
+
+
+
+
+/*
+ATTEMPT 5
+7:00
+7:10
+
+ when arr1 is a 
+ then arr2 is b
+
+ find a and b in arr1
+ a (first element of arr1)
+ b (filtered out a from arr1), take the first element of filtered array
+
+ iterate through both arrays with one loop and compare the two elements at hand
+  arr1[idx] === arr2[idx]
+    if equal
+      return false
+return true
+*/
+
+function isAntiArray5(arr1, arr2) {
+  if ([arr1.length, arr2.length].includes(0)) return false;
+  let a = arr1[0];
+  let b = arr2.filter(element => element !== a)[0]
+
+  for (let idx = 0; idx < arr1.length; idx++) {
+    if (arr1[idx] === a && arr2[idx] !== b) return false;
+    if (arr1[idx] === b && arr2[idx] !== a) return false;
+  }
+  return true;
+}
+
+/*
+ATTEMPT 4
+4:00
+4:22
+4:29
+
+find a and b in array1
+
+iteration of elements
+  in array 2, compare each element to array1
+    1. if element arr1 !== element arr2
+      and
+    2. element arr1 includes a or b
+      and
+    3. element arr2 includes a or b
+      continue
+    else return false
+return true
+*/
+
+function isAntiArray4(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  if (arr1.length > 0) return false;
+  if (arr1.length === 1 && arr1[0] !== arr2[0]) return true;
+
+  let a = arr1[0];
+  let b = arr1.filter(element => element !== a)[0];
+
+  for (let idx = 0; idx < arr1.length; idx++) {
+    let ele1 = arr1[idx]
+    let ele2 = arr2[idx]
+    if (ele1 === ele2) return false;
+    if (![a, b].includes(ele1) || ![a, b].includes(ele2)) {
+      return false
+       }
+  }
+
+  return true;
+}
+
+
+
+
+
+/* 
+attempt 3
+
+input: 2 arrays
+output: boolean value
+
+Return false if it has less than 2 values in array
+
+1. FIND A AND B
+  1. initialize
+  a = arr1[0]
+  b
+
+  2. find b in arr1
+      filter out a
+      if every element in filtered array is the same
+      assign b to element
+
+
+let exit = false
+2. transform arr2 to the opposite values
+  if value is === a
+    return b
+  if value is === b 
+    return a
+  else {
+    exit = true;
+  }
+
+  if(exit) return false
+
+4. compare each value 
+iterate through arrays and see if each element is the same, 
+  if not, return false
+
+
+*/
+
+function isAntiArray3(arr1, arr2) {
+  if (arr1.length < 1) return false;
+  let a = arr1[0];
+  
+  let arr2Filtered = arr2.filter(element => element !== a);
+  let b = arr2Filtered[0];
+
+  let exit = false;
+  arr2 = arr2.map(element => {
+    if (element === a) {
+      return b;
+    } else if (element === b) {
+      return a;
+    } else {
+      exit = true;
+    }
+  });
+
+  for (let index = 0; index < arr1.length; index++) {
+    if (arr1[index] !== arr2[index]) return false;
+  }
+
+  return true;
+
+}
+
+
+
+
+
+
+
+
+/* 
+attempt 2
+
+
+1. find if array is comprised of only a and b
+  if it does contain only a and b, 
+    return true
+  if it doesn't contain a anb b
+    return false
+
+2. find if array b is  comprised of the opposite element within array a's same index position
+  ...so where arr has elementA, arr2 has elementB
+    if every index matches the opposite element
+      return true
+    otherwise return false
+
+
+____________________________________________________
+  if arr1.length is not at least 2, return false
+  1 define
+    a;
+    b;
+
+  2 a === arr1[0]
+  3 finding b...
+      filter out a
+      if every index is the same
+        assign to b
+      otherwise return false
+
+
+  4 compare, if every element in arr1 equals every elements opposite in array2
+    return for each element in array (use every)
+      element1 = arr1[index]
+      element2 = arr2[index]
+        if element2 === a
+          element2 === b
+          else
+            element 2 === a;
+        return element1 === element 2
+
+*/
+
+function isAntiArray2(arr1, arr2) {
+  if (arr1.length < 1) return false;
+
+  let a = arr1[0];
+  let b;
+
+  let filteredArr2 = arr2.filter(char => char !== a);
+  if (filteredArr2.some(element => filteredArr2[0] !== element)) return false;
+  b = filteredArr2[0];
+
+  return arr1.every((element1, index) => {
+    let element2  = arr2[index];
+    if (element2 === a) {
+      element2 = b;
+    } else {
+      element2 = a;
+    }
+    return element1 === element2;
+  }) 
+
+}
+
+/* 
+console.log(isAntiArray(["1", "0", "0", "1"], ["0", "1", "1", "0"])); // true
+console.log(isAntiArray(["apples", "bananas", "bananas"], ["bananas", "apples", "apples"])); // true 
+console.log(isAntiArray([3.14, true, 3.14], [3.14, false, 3.14])); // false
+console.log(isAntiArray([3.14, true, 3.14], [true, "3.14", true])); // false
+console.log(isAntiArray([], [])); // false
+console.log(isAntiArray([3.14], [3.14])); // false
+console.log(isAntiArray([3.14], [false])); // true
+console.log(isAntiArray([3.14, false, 3.14], [false, 3.14, true])); // false
+console.log(isAntiArray([3.14, true], [3.14])); // false 
+*/
+
+/* 
+attempt 1
+
+input: 2 arrays
+output boolean
+
+find out if 2 arrays are opposite
+
+find if both arrays only have elements: a or b
+
+find element a in 1st arr
+find element b in 1st arr
+
+find element a in 2nd arr
+find element b in 2nd arr
+
+  function findAandB(arr)
+
+
+
+
+    ...didn't work assign arr[0] to a
+                   if arr[x] is equal to b, return false
+                   if arr[x] is not equal to a, assign to b
+
+    return [a,b]
+
+if findAandB === false, return false
+
+
+if a === a2 & b === b2, move to next step
+if a === b2 & b === a2, move to next step
+  [a2, b2] = [b2, a2]
+
+iterate through arrays elements
+if arr1[0] is not equal to arr2[0]
+if arr1[1] is not equal to arr2[1]
+if arr1[2] is not equal to arr2[2]
+...
+
+  
+
+  return true if all are not equal
+    otherwise return false
+
+ */
+
+
+
+
+
+
+
+  
+/* function isAntiArray(arr1, arr2) {
+  if (arr1.length === 0 || arr2.length === 0) return false
+
+  function findAandB(arr) {
+    let a = arr[0];
+    let b;
+    for (let idx = 1; idx < arr.length; idx++) {
+      if (arr[idx] === b) return false;
+      if (arr[idx] !== a) b = arr[idx]
+    }
+  }
+
+  if (findAandB(arr1) || findAandB(arr2)) return false;
+
+
+}
+
+// Examples
+console.log(isAntiArray(["1", "0", "0", "1"], ["0", "1", "1", "0"])); // true
+console.log(isAntiArray(["apples", "bananas", "bananas"], ["bananas", "apples", "apples"])); // true
+console.log(isAntiArray([3.14, true, 3.14], [3.14, false, 3.14])); // false
+console.log(isAntiArray([3.14, true, 3.14], [true, "3.14", true])); // false
+console.log(isAntiArray([], [])); // false
+console.log(isAntiArray([3.14], [3.14])); // false
+console.log(isAntiArray([3.14], [false])); // true
+console.log(isAntiArray([3.14, false, 3.14], [false, 3.14, true])); // false
+console.log(isAntiArray([3.14, true], [3.14])); // false
+ */

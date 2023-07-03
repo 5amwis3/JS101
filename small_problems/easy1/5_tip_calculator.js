@@ -26,3 +26,7 @@ let total = (bill + tip);
 
 
 console.log(`The tip is ${tip.toFixed(2)}\nThe total is ${total.toFixed(2)}`);
+
+
+
+
